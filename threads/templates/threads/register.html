@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field.label_tag}}
+        {{ field }}
+        {% endfor %}
+        {% if messages %}
+        {% endif %}
+        {% for message in messages %}
+        <div class="alert alert-danger m-3 {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        <button type="submit">
+            Register!
+        </button>
+    </form>
+
+</div>
+{% endblock %}

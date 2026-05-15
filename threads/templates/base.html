@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico'%}">
+    <style>
+        form.form-group {
+            display: table;
+            background-color: #9fa0a1;
+        }
+
+        div.form-group {
+            display: table-row;
+            background-color: #9fa0a1;
+        }
+
+        label,
+        input {
+            display: table-cell;
+            margin-bottom: 10px;
+        }
+
+        label {
+            padding-right: 10px;
+        }
+    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#5960f0;">
+<nav class="navbar navbar-expand-lg navbar-light p-2 mb-5" style="background-color:#10153b;">
+  <a class="navbar-brand text-white" href="/">SuperForum</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/new_thread">Create <span class="sr-only"></span></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link text-gray disabled" href="/new_thread" style="color:#9fa0a1;">Create <span class="sr-only"></span></a>
+      </li>
+      {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/register">Register <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/login">Login <span class="sr-only"></span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>

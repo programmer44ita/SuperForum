@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<body>
+<div class="d-flex align-items-center justify-content-center">
+    <form method="POST">
+        <div class="form-group">
+            {% csrf_token %}
+            <label for="username">
+                Username
+            </label>
+            <input name="username" type="text", id="username">
+        </div>
+        <div class="form-group">
+            <label for="password">
+                Password
+            </label>
+            <input name="password" type="password", id="password">
+            <input type="hidden" name="next" value="{{next}}">
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger m-3 {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="form-group">
+            <button type="submit">
+                Login!
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+</body>
+</html>

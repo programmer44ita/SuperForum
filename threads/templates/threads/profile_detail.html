@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}{{thread.title}}{% endblock %}
+{% block content %}
+<body>
+    <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+        <div class="container d-flex flex-row align-items-center gap-3 px-3">
+            <img src="{{ profile.icon.url }}" style="width:40px;height:40px;" alt="">
+            <p class="fs-5">{{ profile.user.username }}</p>
+        </div>
+        {% if "def_image.png" not in thread.image.url %}
+        <img src="{{thread.image.url}}" style="width:600px;height:400px;" alt="MEMO Don't forget to put a way for users to set their own alts">
+        {% endif %}
+        {% if thread.text %}
+        <p class="lead">{{thread.text}}</p>
+        {% endif %}
+    </div>
+    <div class="px-3">
+        {% for reply in thread.replies.all %}
+        <div class="d-flex flex-row align-items-start gap-3">
+            <img src="{{ reply.author.profile.icon.url }}" style="width:40px;height:40px;" alt="">
+            <p class="fs-5">{{ reply.author.username }}</p>
+        </div>
+        <p class="fs-5">{{ reply.text }}</p>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}

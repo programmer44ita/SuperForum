@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Create{% endblock %}
+{% block content %}
+<body>
+<div class="card-body">
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="mb-3 px-30">
+{% for field in form %}
+{{ field.label_tag}}
+{{ field }}
+{% endfor %}
+{% if form.text.errors %}
+<div class="text-danger">
+{% for error in form.text.errors %}
+{{ error }}
+{% endfor %}
+</div>
+{% endif %}
+
+</div>
+
+<div class="d-flex justify-content-between px-30">
+<button type="submit" class="btn btn-primary">Create Thread</button>
+</div>
+</form>
+</div>
+</body>
+{% endblock %}
